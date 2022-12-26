@@ -1,25 +1,22 @@
 <template>
 
     <v-row>
-      <v-col>
-        <v-card
-            color="#2E3333"
-            max-width="300"
 
-        >
-          <v-card-title>
-            Наше меню
-          </v-card-title>
-          <ul>
-            <li v-for="menuItem in menuItems" :key="menuItems.id">
-              <router-link :to="menuItem.route">
-                <strong>{{ menuItem.name }}</strong>
-              </router-link>
-
-            </li>
-          </ul>
-        </v-card>
+      <v-col   v-for="menuItem in menuItems" :key="menuItem.id" >
+        <router-link :to=menuItem.route>
+          <v-card
+              class="mx-auto"
+              max-width="344"
+              color="#2E3333"
+          >
+            <v-card-title>
+              {{ menuItem.name }}
+            </v-card-title>
+            <v-spacer></v-spacer>
+          </v-card>
+        </router-link>
       </v-col>
+
     </v-row>
     <v-row justify="space-around" no-gutters>
             <button
@@ -32,8 +29,10 @@
       >
         {{ link }}
       </button>
-      <v-col class="text-center mt-4" cols="12">
+      <v-col class=" text-center mt-4" cols="12">
+        <router-link class="fuji" to="/">
        <strong>FUJI</strong>
+        </router-link>
       </v-col>
     </v-row>
 
@@ -104,7 +103,11 @@ export default {
 </script>
 
 <style scoped>
-span {
+.mx-auto a {
   text-decoration: none;
+}
+.fuji {
+  text-decoration: none;
+  color: black;
 }
 </style>

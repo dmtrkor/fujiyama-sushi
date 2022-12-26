@@ -1,20 +1,20 @@
 <template>
-  <h1>Drinks</h1>
+
   <v-row >
 
-    <v-col  sm="6" md="3"  cols="12" v-for="product in products" :key="product.id" >
+    <v-col  sm="6" md="3"  cols="12" v-for="product in cartStore.products" :key="product.id" >
       <v-card
           class="mx-auto"
           max-width="344"
       >
         <v-img
-            :src=product.imageUrl
+            :src=product.imgUrl
             height="200px"
             cover
         ></v-img>
 
         <v-card-title>
-          {{ product.name }}
+          {{ product.title }}
         </v-card-title>
         <div >
         <v-card-subtitle>
@@ -22,30 +22,29 @@
 
         </v-card-subtitle>
         </div>
-        <v-btn>Замовити</v-btn>
+        <v-btn @click="cartStore.addToCart(product)"
+        >Замовити</v-btn>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
-<script>
-import axios from "axios";
-
-export default {
-  name: "Card",
-  data() {
-    return {
-      products: [],
-    };
-  },
-  mounted() {
-    axios
-        .get('https://639b47bf31877e43d6883cb2.mockapi.io/products')
-        .then(response => (this.products = response.data))
-  },
+<script setup>
+import {useCartStore} from "../../stores";
+import {onMounted} from "vue";
+const props = defineProps({
+  product: {
+    type: Object,
+    required: true
+  }
+});
+const cartStore = useCartStore();
+onMounted(()=>{
+  cartStore.getGrille()
+})
 
 
-};
+
 
 </script>
 

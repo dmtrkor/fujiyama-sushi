@@ -1,4 +1,5 @@
-import {createApp, h} from 'vue'
+import {  createPinia } from 'pinia';
+import {createApp} from 'vue'
 import { createVuetify } from 'vuetify'
 import App from './App.vue'
 import router from './Router/index'
@@ -7,7 +8,7 @@ import 'vuetify/styles'
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-
+const pinia = createPinia()
 const vuetify = createVuetify({
     components,
     directives,
@@ -20,7 +21,8 @@ const vuetify = createVuetify({
     },
 })
 
-
-
-
-createApp(App).use(vuetify).use(router).mount('#app')
+createApp(App)
+    .use(vuetify)
+    .use(router)
+    .use(pinia)
+    .mount('#app')

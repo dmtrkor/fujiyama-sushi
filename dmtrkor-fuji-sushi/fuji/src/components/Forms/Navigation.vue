@@ -1,16 +1,23 @@
 <template>
   <v-container>
       <v-row >
-      <v-col  sm="12" md="3"  cols="1" v-for="menuItem in menuItems" :key="menuItem.id" >
+      <v-col  sm="12" md="3"  cols="12" v-for="menuItem in menuItems" :key="menuItem.id" >
         <router-link :to=menuItem.route>
         <v-card
             class="mx-auto"
             max-width="344"
         >
-          <v-card-title>
+          <v-img
+            :src="menuItem.imgUrl"
+          >
+
+          </v-img>
+          <v-card-title
+           class="title"
+          >
             {{ menuItem.text }}
           </v-card-title>
-            <v-spacer></v-spacer>
+
         </v-card>
         </router-link>
       </v-col>
@@ -50,7 +57,7 @@
      id: 5,
      text: 'Сети',
      imgUrl: "./menu_img/menu_sets.webp",
-     route: "/pizza"
+     route: "/sets"
    },
    {
      id: 6,

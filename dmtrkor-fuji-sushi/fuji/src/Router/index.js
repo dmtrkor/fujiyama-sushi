@@ -6,6 +6,7 @@ import Sushi from '../components/Products/Sushi.vue'
 import Pizza from '../components/Products/Pizza.vue'
 import Drinks from '../components/Products/Drinks.vue'
 import Card from '../components/Products/Card.vue'
+import Sets from '../components/Products/Sets.vue'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -33,7 +34,13 @@ const router = createRouter({
             path: '/drinks',
             component: Drinks,
             name: Drinks
-        }
+        },
+        {
+            path: '/sets',
+            component: Sets,
+            name: Sets
+        },
+
 
     ]
 })

@@ -1,12 +1,14 @@
 <template>
 <header>
+  <router-link to="/">
   <h1>FUJI</h1>
+  </router-link>
   <nav>
     <li >
       Доставка та оплата</li>
     <li >Контакти</li>
     <li >Про нас</li>
-    <div><img src="../public/icon/Tilda_Icons_3st_man.svg"></div>
+    <div><Cart></Cart></div>
     <div><FormVuetify></FormVuetify></div></nav>
 </header>
 </template>
@@ -14,6 +16,7 @@
 <script setup>
 
 import FormVuetify from "../Forms/FormVuetify.vue";
+import Cart from "../Cart/Cart.vue";
 </script>
 
 <style scoped>
@@ -50,6 +53,10 @@ h1 {
   margin-left: 50px;
   margin-top: auto;
   margin-bottom: auto;
+}
+header a {
+  text-decoration: none;
+  color: black;
 }
 
 </style>
