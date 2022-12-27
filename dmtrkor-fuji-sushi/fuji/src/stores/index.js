@@ -21,19 +21,16 @@ export const useCartStore = defineStore("cart", {
         actions: {
              async getProducts() {
                 const res = await  axios.get(url + 'pizza')
-                    /*.then(response => (this.products = response.data))*/
                  this.products = res.data
                  console.log(this.products)
             },
             async getGrille() {
                 const res = await  axios.get(url + 'grille')
-                    /*.then(response => (this.products = response.data))*/
                  this.products = res.data
                  console.log(this.products)
             },
             async getSushi() {
                 const res = await  axios.get(url + 'sushi')
-                    /*.then(response => (this.products = response.data))*/
                  this.products = res.data
                  console.log(this.products)
             },
@@ -44,7 +41,7 @@ export const useCartStore = defineStore("cart", {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Your item has been updated',
+                        title: 'Додано до кошика',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -54,12 +51,16 @@ export const useCartStore = defineStore("cart", {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Your item has been saved',
+                        title: 'Додано до кошика',
                         showConfirmButton: false,
                         timer: 1500
                     });
                 }
             },
+            removeFromCart(cartItem) {
+                this.cartItems = this.cartItems.filter(product => product.id !== cartItem.id);
+
+            }
 
 
         },

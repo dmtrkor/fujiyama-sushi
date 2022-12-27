@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <v-row justify="center" cols="1">
     <v-dialog
         v-model="dialog"
         fullscreen
@@ -12,6 +12,7 @@
         >
           <v-text><span>кошик</span></v-text>
           <img src="/icon/Tilda_Icons_3st_cart.svg">
+          <span>({{ cartStore.countCartItems }})</span>
         </v-btn>
       </template>
       <v-card>
@@ -26,7 +27,7 @@
           >
             <v-icon >mdi-close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title>Cart</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
             <v-btn
@@ -51,12 +52,19 @@
             </thead>
             <tbody>
             <tr
-                v-for="item in desserts"
-                :key="item.name"
+                v-for="cartItem in cartStore.cartItems"
+                :key="cartItem.id"
             >
-              <td>{{ item.name }}</td>
-              <td>{{ item.calories }}</td>
-              <td><v-btn> Видалити </v-btn></td>
+              <td>{{ cartItem.title }}</td>
+              <td><v-img
+                  :src=cartItem.imgUrl
+                  height="50px"
+                  cover
+              ></v-img></td>
+              <td>{{ cartItem.price }} грн</td>
+              <td><v-btn
+                  @click="cartStore.removeFromCart(cartItem)"
+              > Видалити </v-btn></td>
             </tr>
             </tbody>
           </v-table>
@@ -66,15 +74,18 @@
   </v-row>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      dialog: false,
+<script setup>
+import {useCartStore} from "../../stores";
+import {ref} from "vue";
+const props = defineProps({
+  product: {
+    type: Object,
+    required: true
+  }
+});
+const cartStore = useCartStore();
+ const dialog = ref(false)
 
-    }
-  },
-}
 </script>
 
 <style>
